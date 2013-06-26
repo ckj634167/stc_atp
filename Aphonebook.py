@@ -27,7 +27,7 @@ class Contact:
     but_create_new_contact=''
     
     #comp = package + '/' + activity
-    def addContact(self):
+    def addContact(self,Ncontacts):
         #get Device connection
         #device = UtilTool.connectToDevice()
         #lanuch Contacts app
@@ -48,7 +48,7 @@ class Contact:
         vc = UtilTool.init(device)
         print 'test environment is ready'
         #get button named as Create a new contact
-        for i in range(0,2):
+        for i in range(0,Ncontacts):
             if not vc.findViewWithText('Create a new contact'):
                 vc.dump()
                 print 'hey_if'
@@ -81,10 +81,10 @@ class Contact:
         #get current view and check the result
         MonkeyRunner.sleep(15)
         vc.dump()
-        contacts_number = vc.findViewWithText('2 contacts')
+        contacts_number = vc.findViewWithText(str(Ncontacts)+' contacts')
         print contacts_number
         text = contacts_number.getText()
-        if text=='2 contacts':
+        if text==str(Ncontacts)+' contacts':
             print 'passed'
         else:
             print 'failed'
